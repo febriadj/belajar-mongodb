@@ -111,3 +111,43 @@ db.products.find({
 })
 ~~~
 <a href="https://github.com/febriadj/belajar-mongodb/blob/master/element.js">Lihat Lebih Details</a>
+
+## Update Documents
+~~~javascript
+/** 
+  update products set product_name = 'Asus VivoBook 14 A420', stock = 16
+  where product_name = 'Asus ZenBook 15 UX534'
+*/
+db.products.updateOne(
+  { product_name: 'Asus ZenBook 15 UX534' },
+  { 
+    $set: {
+      product_name: 'Asus VivoBook 14 A420',
+      stock: 16
+    } 
+  }
+)
+
+/**
+  update products set stock = 20 where
+  _id = '607b8023d6340a09088e6977' and stock > 16
+*/
+db.products.update(
+  {
+    $and: [
+      { 
+        _id: { $not: { $eq: ObjectId('607b8023d6340a09088e6977') } }
+      },
+      {
+        stock: { $gt: 16 }
+      }
+    ]
+  },
+  {
+    $set: {
+      stock: 20
+    }
+  }
+)
+~~~
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/element.js">Lihat Lebih Details</a>
