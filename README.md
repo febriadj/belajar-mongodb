@@ -53,7 +53,10 @@ db.products.find({
 
 ## Logical Operator
 ~~~javascript
-// select * from products where product_name = 'Keychron K4 V2 - 100 - Hot Swappable' and category = 'keychron'
+/** 
+  select * from products where 
+  product_name = 'Keychron K4 V2 - 100 - Hot Swappable' and category = 'keychron'
+*/
 db.products.find({
   $and: [
     { product_name:  'Keychron K4 V2 - 100 - Hot Swappable' },
@@ -143,7 +146,7 @@ db.products.updateOne(
 
 /**
   update products set stock = 20 where
-  _id = '607b8023d6340a09088e6977' and stock > 16
+  _id != '607b8023d6340a09088e6977' and stock > 16
 */
 db.products.update(
   {
