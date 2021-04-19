@@ -12,7 +12,7 @@ db.products.insertOne({
   created_at: Date()
 })
 ~~~
-<a href="https://github.com/febriadj/belajar-mongodb/blob/master/insert.js">Lihat Lebih Details</a>
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/insert-docs/insert.js">Lihat Lebih Details</a>
 
 ## Find Documents
 ~~~javascript
@@ -26,7 +26,7 @@ db.products.find({
   category: 'laptop'
 })
 ~~~
-<a href="https://github.com/febriadj/belajar-mongodb/blob/master/find.js">Lihat Lebih Details</a>
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/find-docs/find.js">Lihat Lebih Details</a>
 
 ## Comparison Operator
 ~~~javascript
@@ -49,7 +49,7 @@ db.products.find({
   }
 })
 ~~~
-<a href="https://github.com/febriadj/belajar-mongodb/blob/master/comparison.js">Lihat Lebih Details</a>
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/find-docs/comparison.js">Lihat Lebih Details</a>
 
 ## Logical Operator
 ~~~javascript
@@ -68,7 +68,7 @@ db.products.find({
   }
 })
 ~~~
-<a href="https://github.com/febriadj/belajar-mongodb/blob/master/logical.js">Lihat Lebih Details</a>
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/find-docs/logical.js">Lihat Lebih Details</a>
 
 ## Evaluation Operator
 ~~~javascript
@@ -92,7 +92,7 @@ db.products.find({
   }
 })
 ~~~
-<a href="https://github.com/febriadj/belajar-mongodb/blob/master/evaluation.js">Lihat Lebih Details</a>
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/find-docs/evaluation.js">Lihat Lebih Details</a>
 
 ## Element Operator
 ~~~javascript
@@ -110,7 +110,20 @@ db.products.find({
   }
 })
 ~~~
-<a href="https://github.com/febriadj/belajar-mongodb/blob/master/element.js">Lihat Lebih Details</a>
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/find-docs/element.js">Lihat Lebih Details</a>
+
+## Modifier Query
+~~~javascript
+// select * from products limit 3 offset 1
+db.products.find().limit(3).skip(1)
+
+// select count(*) from products
+db.products.find().count()
+
+// select * from products order by stock asc
+db.products.find().sort({ stock: 1 })
+~~~
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/find-docs/modifier.js">Lihat Lebih Details</a>
 
 ## Update Documents
 ~~~javascript
@@ -150,4 +163,28 @@ db.products.update(
   }
 )
 ~~~
-<a href="https://github.com/febriadj/belajar-mongodb/blob/master/element.js">Lihat Lebih Details</a>
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/update-docs/update.js">Lihat Lebih Details</a>
+
+## Update Operator
+~~~javascript
+// update products set stock = stock + 1
+db.products.updateMany(
+  { _id: ObjectId('607b8023d6340a09088e6977') },
+  {
+    $inc: {
+      stock: 1 // increment
+    }
+  }
+)
+
+// alter table products change pruduct_name name tinytext
+db.products.updateMany(
+  {}, // update field product_name di semua dokumen
+  {
+    $rename: {
+      product_name: 'name'
+    }
+  }
+)
+~~~
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/update-docs/update-operator.js">Lihat Lebih Details</a>
