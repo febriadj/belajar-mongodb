@@ -204,3 +204,38 @@ db.products.deleteMany()
 db.products.deleteMany({})
 ~~~
 <a href="https://github.com/febriadj/belajar-mongodb/blob/master/delete-docs/delete.js">Lihat Lebih Details</a>
+
+## Bulk Write Query
+~~~javascript
+db.products.bulkWrite([
+  {
+    /**
+      update product set product_name = 'Dell Inspiron 13-5391',
+      category = 'laptop', stock = stock + 4 where _id = '607fef2de086491b680c19e8'
+    */
+    updateOne: {
+      filter: {
+        _id: { $eq: ObjectId('607fef2de086491b680c19e8') }
+      },
+      update: {
+        $set: {
+          product_name: 'Dell Inspiron 13-5391',
+          category: 'laptop'
+        },
+        $inc: { 
+          stock: 4 
+        }
+      }
+    }
+  },
+  {
+    // delete from products where _id = '607fef2de086491b680c19e9'
+    deleteOne: {
+      filter: {
+        _id: ObjectId('607fef2de086491b680c19e9')
+      }
+    }
+  }
+])
+~~~
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/bulk-write/bulkwrite.js">Lihat Lebih Details</a>
