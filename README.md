@@ -200,7 +200,6 @@ db.products.deleteOne({
 })
 
 // delete from products
-db.products.deleteMany()
 db.products.deleteMany({})
 ~~~
 <a href="https://github.com/febriadj/belajar-mongodb/blob/master/delete-docs/delete.js">Lihat Lebih Details</a>
