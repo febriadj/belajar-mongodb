@@ -6,5 +6,4 @@ db.products.deleteOne({
 })
 
 // delete from products
-db.products.deleteMany()
 db.products.deleteMany({})
