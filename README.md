@@ -97,6 +97,32 @@ db.products.find({
 ~~~
 <a href="https://github.com/febriadj/belajar-mongodb/blob/master/find-docs/evaluation.js">Lihat Lebih Details</a>
 
+## Array Query
+~~~javascript
+use('belajar-mongo')
+
+// select * from products where color between 'Yellow' and 'White'
+db.products.find({
+  'details.color': {
+    $all: ['Yellow', 'White']
+  }
+})
+
+db.products.find({
+  'details.color': { $size: 3 }
+})
+
+// select * from products where color in ('Blue',  'Silver')
+db.products.find({
+  'details.color': {
+    $elemMatch: {
+      $in: ['Blue', 'Silver']
+    }
+  }
+})
+~~~
+<a href="https://github.com/febriadj/belajar-mongodb/blob/master/find-docs/array.js">Lihat Lebih Details</a>
+
 ## Element Operator
 ~~~javascript
 // select * from products where product_name is null
